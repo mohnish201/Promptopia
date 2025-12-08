@@ -6,7 +6,7 @@ import PromptCard from "./PromptCard";
 
 const PromptCardList = ({ data, handleTagClick }) => {
   return (
-    <div className='mt-16 prompt_layout'>
+    <div className='mt-4 prompt_layout'>
       {data.map((post) => (
         <PromptCard
           key={post._id}
@@ -71,7 +71,7 @@ const Feed = () => {
     <section className='feed'>
       <form className='relative w-full flex-center'>
         <input
-          type='text'
+          type='search'
           placeholder='Search for a tag or a username'
           value={searchText}
           onChange={handleSearchChange}
@@ -79,6 +79,15 @@ const Feed = () => {
           className='search_input peer'
         />
       </form>
+
+{
+  (searchText && searchedResults.length === 0) && (
+    <h2 className='mt-10 font-semibold text-gray-500 text-xl'>
+      No prompts found
+    </h2>
+  )
+}
+
 
       {/* All Prompts */}
       {searchText ? (
